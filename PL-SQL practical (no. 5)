@@ -2,10 +2,11 @@ Named PL/SQL Practical 5: Student Marks and Result Table
 
 StudentMarks(name, total_marks)
 Result(Roll, Name, Class)
+category(Name, RollNo, class)
 
 
 $ delimiter
-create procedure proc_grade(in integer, in varchar(20), inc intm);
+create procedure proc_grade(in a int(10), in b varchar(20), in m int(10));
 begin
 declare c varchar(30);
 if(m<=1500 and m>=990) then set c='Distinction';
