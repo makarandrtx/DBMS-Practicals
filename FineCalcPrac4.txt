@@ -1,0 +1,20 @@
+mysql> delimiter $
+mysql> create procedure calculateFine2(Rollon int(20), Name varchar(50))
+    -> begin
+    -> declare ldate date;
+    -> declare fine int(20);
+    -> declare day int(20);
+    -> select Date_Of_Issue into ldate from Borrower where Roll_No=Rollon and Name_Of_Book=Name;
+    -> set day=datediff(curdate(), ldate);
+    -> if(day>=15 and day<=30) then set fine=day*5;
+    -> elseif(day>30) then set fine=day*50;
+    -> end if;
+    -> update Borrower set Status='R' where Roll_No=Rollon and Name_Of_Book=Name;
+    -> if(fine is not null) then insert into Fine values (Rollon, CURDATE(), fine);
+    -> end if;
+    -> end
+    -> $ delimiter
+
+
+optional declare exit handler for sqlexception select 'table not found';
+
