@@ -2,7 +2,7 @@
 using namespace std;
 
 int main() {
-    string tokenAccessID = "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";
+    string tokenAccessID = "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";
     cout << tokenAccessID << endl;
     return 0;
 }
